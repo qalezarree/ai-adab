@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>one last try for us?</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <audio src="in-another-life.mp3"></audio>
+</head>
+<body>
+
+  <div class="sky"></div>
+  <div id="stars"></div>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+  <div class="moon"></div>
+  <div id="rain"></div>
+  <section id="scene">
+  <svg viewBox="0 0 700 400" role="img" aria-label="A man plays guitar under a tree for the woman he loves">
+
+    <!-- Ground and blanket -->
+    <ellipse cx="350" cy="365" rx="360" ry="40" fill="#10261f"/>
+    <ellipse cx="385" cy="340" rx="190" ry="12" fill="#6b2f45" opacity="0.85"/>
+
+    <!-- Tree -->
+    <path d="M150 360 C158 290 150 240 162 190 L202 190 C212 240 206 290 214 360 Z" fill="#4a3222"/>
+    <g class="canopy">
+      <circle cx="140" cy="150" r="60" fill="#1f4d3a"/>
+      <circle cx="215" cy="115" r="66" fill="#245a43"/>
+      <circle cx="275" cy="160" r="55" fill="#1f4d3a"/>
+      <circle cx="185" cy="170" r="58" fill="#2a6348"/>
+    </g>
+
+    <!-- Fireflies -->
+    <circle class="firefly" cx="90"  cy="260" r="3" fill="#f3d98b"/>
+    <circle class="firefly f2" cx="560" cy="200" r="3" fill="#f3d98b"/>
+    <circle class="firefly f3" cx="610" cy="290" r="2.5" fill="#f3d98b"/>
+    <circle class="firefly f2" cx="260" cy="120" r="2.5" fill="#f3d98b"/>
+
+    <!-- ========== THE MAN ========== -->
+    <g id="man">
+      <!-- legs -->
+      <path d="M284 312 L345 324 L335 338 L272 332 Z" fill="#2c2f45"/>
+      <!-- torso -->
+      <path d="M286 255 Q300 249 314 255 L318 314 L284 314 Z" fill="#3b5b8c"/>
+      <!-- head -->
+      <circle cx="300" cy="234" r="18" fill="#e8b894"/>
+      <path d="M282 232 A18 18 0 0 1 318 232 Q300 220 282 232 Z" fill="#2b1d14"/>
+      <circle cx="309" cy="236" r="1.8" fill="#2b1d14"/>
+      <path d="M303 244 q5 4 10 0" stroke="#2b1d14" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+      <!-- guitar -->
+      <g transform="translate(320 296) rotate(-25)">
+        <rect x="20" y="-4" width="62" height="8" fill="#6b3e1e"/>
+        <rect x="82" y="-6" width="14" height="12" rx="2" fill="#3b2412"/>
+        <ellipse cx="0" cy="0" rx="28" ry="21" fill="#b5651d"/>
+        <circle cx="2" cy="0" r="6.5" fill="#2b1d14"/>
+        <line x1="-10" y1="0" x2="90" y2="0" stroke="#f0e6c8" stroke-width="0.8"/>
+      </g>
+
+      <!-- fretting arm (stays still) -->
+      <path d="M308 262 Q350 288 380 268" stroke="#3b5b8c" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <circle cx="381" cy="267" r="5" fill="#e8b894"/>
+
+      <!-- strumming arm (moves) -->
+      <g class="strum">
+        <line x1="312" y1="262" x2="333" y2="298" stroke="#3b5b8c" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="334" cy="300" r="5" fill="#e8b894"/>
+      </g>
+    </g>
+
+    <!-- Music notes -->
+    <text class="note" x="372" y="250" fill="#f3d98b" font-size="22">♪</text>
+    <text class="note n2" x="372" y="250" fill="#f3d98b" font-size="26">♫</text>
+    <text class="note n3" x="372" y="250" fill="#f3d98b" font-size="20">♪</text>
+
+    <!-- ========== THE WOMAN ========== -->
+    <g id="woman">
+      <!-- dress -->
+      <path d="M456 258 Q470 252 484 258 L492 300 Q525 322 505 336 L430 336 Q418 318 450 300 Z" fill="#e07a9a"/>
+      <!-- head, hair, and face tilt together -->
+      <g class="listen">
+        <g class="hair">
+          <path d="M451 238 Q448 292 462 308 L494 308 Q498 270 489 238 Q470 212 451 238 Z" fill="#4a2a1a"/>
+        </g>
+        <circle cx="470" cy="240" r="17" fill="#f0c4a0"/>
+        <path d="M453 236 Q470 216 487 236 Q470 228 453 236 Z" fill="#4a2a1a"/>
+        <!-- closed happy eyes + smile -->
+        <path d="M460 241 q3 3 6 0" stroke="#4a2a1a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M474 241 q3 3 6 0" stroke="#4a2a1a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <path d="M464 248 q6 5 12 0" stroke="#b0405a" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <!-- blush -->
+        <circle cx="458" cy="247" r="3" fill="#ff9fb5" opacity="0.5"/>
+        <circle cx="482" cy="247" r="3" fill="#ff9fb5" opacity="0.5"/>
+      </g>
+      <!-- hands in lap -->
+      <circle cx="466" cy="300" r="5" fill="#f0c4a0"/>
+      <circle cx="478" cy="300" r="5" fill="#f0c4a0"/>
+      <!-- heart above her -->
+      <text class="love" x="470" y="195" text-anchor="middle" font-size="24" fill="#ff9fb5">♥</text>
+    </g>
+
+  </svg>
+  <p class="scene-caption">He doesn't say it out loud. He plays it.</p>
+</section>
+
+  
+  <audio id="song" src="in-another-life.mp3" loop></audio>
+
+  <header id="hero">
+    <nav>
+      <span class="logo">In Another Life</span>
+      <div class="nav-links">
+        <a href="#quiz">Questions</a>
+        <a href="#signs">Signs</a>
+        <a href="#steps">Steps</a>
+        <a href="#starters">Words</a>
+        <button id="musicBtn" aria-label="Play or pause music">🎵</button>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <h1>Maybe in another life,<br>we got it right.</h1>
+      <p>But I'm still here, still wondering if this one deserves one last try.</p>
+      <button id="startBtn" class="btn">Look Inside My Heart</button>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="quiz">
+      <h2>Questions I Ask the Moon</h2>
+      <div class="bar"><div class="fill"></div></div>
+      <p id="counter">0 / 15 answered</p>
+      <form id="quizForm"></form>
+      <div class="btn-row">
+        <button type="button" id="resultBtn" class="btn">Hear My Answer</button>
+        <button type="button" id="restartBtn" class="btn btn-light">Start Over</button>
+      </div>
+      <p id="result"></p>
+      <p id="savedResult"></p>
+    </section>
+
+    <section id="signs">
+      <h2>What My Heart Knows</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>Some nights I look up at the moon and wonder if it remembers us the way I do. I think about the version of us that never argued, never doubted, never stayed quiet when we should have spoken. Maybe that life exists somewhere else. But I’m learning that love isn’t only about the life we imagine. It’s about the one we are brave enough to fight for, with honest words, open hands, and the courage to try again.<br><br>If this is our last try, I want it to be <em>real</em>. And if it isn’t enough, I want to know I gave my <strong>whole heart</strong> <em>before I let go</em>.</br></h3>
+          <h3>Worth one more try</h3>
+        </div>
+    </section>
+  </main>
+</body>
+</html>
+<!--i still remembering us beneath the sowwallow apple tree,and seeing each other's eyes like there is no lie between them.For your knows,i will for you,again,again, and again-->

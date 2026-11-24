@@ -1,0 +1,371 @@
+/* ---------- Colors ---------- */
+:root {
+  --text: #f5e6e6;
+  --muted: #b9b3d1;
+  --accent: #f3d98b;       /* moonlight gold */
+  --accent-dark: #e6c260;
+  --card: rgba(22, 26, 56, 0.55);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: #070914; }
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+}
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 600; }
+
+/* ---------- Night sky background ---------- */
+.sky {
+  position: fixed; inset: 0; z-index: -4;
+  background: linear-gradient(180deg, #05060f 0%, #0b1030 55%, #1b1840 100%);
+}
+
+/* Stars (created by script.js) */
+#stars { position: fixed; inset: 0; z-index: -3; pointer-events: none; }
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: twinkle 4s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.5); }
+}
+/* ---------- Guitar scene ---------- */
+#scene svg {
+  width: 100%;
+  max-width: 800px;
+  display: block;
+  margin: 0 auto;
+}
+.scene-caption {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 1rem;
+}
+
+/* Strumming arm: rotates around his shoulder */
+.strum {
+  transform-origin: 312px 262px;
+  animation: strum 0.6s ease-in-out infinite;
+}
+@keyframes strum {
+  0%, 100% { transform: rotate(-9deg); }
+  50%      { transform: rotate(9deg); }
+}
+
+/* Tree leaves sway slowly */
+.canopy {
+  transform-origin: 190px 200px;
+  animation: sway 7s ease-in-out infinite;
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50%      { transform: rotate(1.5deg); }
+}
+
+/* Her head tilts as she listens */
+.listen {
+  transform-origin: 470px 258px;
+  animation: tilt 5s ease-in-out infinite;
+}
+@keyframes tilt {
+  0%, 100% { transform: rotate(-3deg); }
+  50%      { transform: rotate(3deg); }
+}
+
+/* Music notes float from the guitar toward her */
+.note {
+  opacity: 0;
+  animation: floatNote 4.5s ease-out infinite;
+}
+.n2 { animation-delay: 1.5s; }
+.n3 { animation-delay: 3s; }
+@keyframes floatNote {
+  0%   { opacity: 0;   transform: translate(0, 0); }
+  15%  { opacity: 0.9; }
+  100% { opacity: 0;   transform: translate(80px, -90px); }
+}
+
+/* Heart above her head pulses */
+.love {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: beat 1.6s ease-in-out infinite;
+}
+@keyframes beat {
+  0%, 100% { transform: scale(1);   opacity: 0.7; }
+  50%      { transform: scale(1.3); opacity: 1; }
+}
+
+/* Fireflies blink */
+.firefly {
+  animation: blink 3s ease-in-out infinite;
+}
+.f2 { animation-delay: 1s; }
+.f3 { animation-delay: 2s; }
+@keyframes blink {
+  0%, 100% { opacity: 0.1; }
+  50%      { opacity: 0.9; }
+}
+
+/* ---------- The full moon ---------- */
+.moon {
+  position: fixed;
+  top: 8%; right: 10%;
+  width: 190px; height: 190px;
+  border-radius: 50%;
+  z-index: -2;
+  /* craters first, moon surface last */
+  background:
+    radial-gradient(circle at 28% 38%, rgba(120,110,80,0.25) 0 9%, transparent 10%),
+    radial-gradient(circle at 62% 28%, rgba(120,110,80,0.20) 0 6%, transparent 7%),
+    radial-gradient(circle at 68% 66%, rgba(120,110,80,0.25) 0 11%, transparent 12%),
+    radial-gradient(circle at 38% 72%, rgba(120,110,80,0.18) 0 7%, transparent 8%),
+    radial-gradient(circle at 35% 35%, #fffdf0 0%, #f5ecc8 55%, #d8cca0 100%);
+  box-shadow:
+    0 0 60px 20px rgba(255, 244, 200, 0.35),
+    0 0 180px 70px rgba(255, 244, 200, 0.15);
+  animation: floatMoon 14s ease-in-out infinite, glowMoon 6s ease-in-out infinite;
+}
+@keyframes floatMoon {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(-25px, 18px); }
+}
+@keyframes glowMoon {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.12); }
+}
+
+/* ---------- Drifting clouds ---------- */
+.cloud {
+  position: fixed;
+  z-index: -1;
+  width: 420px; height: 90px;
+  border-radius: 50%;
+  background: rgba(150, 160, 210, 0.10);
+  filter: blur(28px);
+  pointer-events: none;
+  animation: drift linear infinite;
+}
+.c1 { top: 18%; animation-duration: 70s; }
+.c2 { top: 45%; animation-duration: 95s; animation-delay: -30s; width: 560px; }
+.c3 { top: 72%; animation-duration: 80s; animation-delay: -55s; }
+@keyframes drift {
+  from { left: -600px; }
+  to   { left: 110%; }
+}
+
+/* ---------- Navbar ---------- */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+.logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic; }
+.nav-links { display: flex; gap: 1.2rem; align-items: center; }
+.nav-links a { color: var(--text); text-decoration: none; }
+.nav-links a:hover { color: var(--accent); }
+#musicBtn {
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+#musicBtn:hover { background: rgba(243, 217, 139, 0.15); }
+#musicBtn.playing { animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(243, 217, 139, 0.5); }
+  50%      { box-shadow: 0 0 0 10px rgba(243, 217, 139, 0); }
+}
+
+/* ---------- Hero ---------- */
+#hero { min-height: 90vh; display: flex; flex-direction: column; }
+.hero-content {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: flex-start; justify-content: center;
+  padding: 2rem 8%;
+  max-width: 800px;
+}
+.hero-content h1 { font-size: 3.2rem; line-height: 1.2; margin-bottom: 1rem; text-shadow: 0 0 25px rgba(243,217,139,0.25); }
+.hero-content p { color: var(--muted); font-size: 1.2rem; margin-bottom: 2rem; }
+
+/* ---------- Sections + fade-in ---------- */
+section { max-width: 900px; margin: 0 auto; padding: 3rem 1.5rem; opacity: 0; transform: translateY(30px); transition: opacity 1s, transform 1s; }
+section.visible { opacity: 1; transform: none; }
+h2 { font-size: 2rem; margin-bottom: 1rem; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  background: var(--accent);
+  color: #1a1636;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.btn:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 0 20px rgba(243,217,139,0.4); }
+.btn-light { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+.btn-light:hover { background: var(--accent); color: #1a1636; }
+.btn-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; }
+
+/* ---------- Cards (glass look) ---------- */
+.card {
+  background: var(--card);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 1.5rem;
+  border-radius: 14px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 10px 30px rgba(243,217,139,0.15); }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+.starter { cursor: pointer; font-style: italic; }
+
+/* ---------- Quiz ---------- */
+fieldset {
+  border: none;
+  margin: 0 0 0.8rem;
+  padding: 1rem 1.2rem;
+  background: var(--card);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+}
+legend { font-weight: 400; padding: 0; float: left; width: 100%; margin-bottom: 0.5rem; }
+label { margin-right: 1.5rem; cursor: pointer; }
+input[type="radio"] { accent-color: var(--accent); }
+#result { font-size: 1.2rem; font-family: 'Playfair Display', serif; font-style: italic; margin-top: 1.5rem; color: var(--accent); }
+#counter { color: var(--muted); font-size: 0.9rem; }
+
+.bar { background: rgba(255,255,255,0.12); height: 8px; border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+.fill { background: var(--accent); height: 100%; width: 0; transition: width 0.4s; box-shadow: 0 0 10px var(--accent); }
+
+/* ---------- Footer ---------- */
+footer { text-align: center; padding: 4rem 1.5rem; color: var(--muted); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  nav { flex-direction: column; gap: 0.8rem; }
+  .two-col { grid-template-columns: 1fr; }
+  .hero-content { padding: 2rem 1.5rem; }
+  .hero-content h1 { font-size: 2.2rem; }
+  .moon { width: 120px; height: 120px; top: 5%; right: 6%; }
+}
+rain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;            /* behind your text, in front of the sky */
+  pointer-events: none;   /* clicks pass through */
+  overflow: hidden;
+}
+.heart {
+  position: absolute;
+  top: -40px;
+  opacity: 0.3;           /* the opacity you asked for */
+  color: #ff9fb5;
+  text-shadow: 0 0 8px rgba(255, 159, 181, 0.6);
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to   { transform: translate(var(--drift), 110vh) rotate(var(--spin)); }
+}
+/* ---------- Guitar scene ---------- */
+#scene svg {
+  width: 100%;
+  max-width: 800px;
+  display: block;
+  margin: 0 auto;
+}
+.scene-caption {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 1rem;
+}
+
+/* Strumming arm: rotates around his shoulder */
+.strum {
+  transform-origin: 312px 262px;
+  animation: strum 0.6s ease-in-out infinite;
+}
+@keyframes strum {
+  0%, 100% { transform: rotate(-9deg); }
+  50%      { transform: rotate(9deg); }
+}
+
+/* Tree leaves sway slowly */
+.canopy {
+  transform-origin: 190px 200px;
+  animation: sway 7s ease-in-out infinite;
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50%      { transform: rotate(1.5deg); }
+}
+
+/* Her head tilts as she listens */
+.listen {
+  transform-origin: 470px 258px;
+  animation: tilt 5s ease-in-out infinite;
+}
+@keyframes tilt {
+  0%, 100% { transform: rotate(-3deg); }
+  50%      { transform: rotate(3deg); }
+}
+
+/* Music notes float from the guitar toward her */
+.note {
+  opacity: 0;
+  animation: floatNote 4.5s ease-out infinite;
+}
+.n2 { animation-delay: 1.5s; }
+.n3 { animation-delay: 3s; }
+@keyframes floatNote {
+  0%   { opacity: 0;   transform: translate(0, 0); }
+  15%  { opacity: 0.9; }
+  100% { opacity: 0;   transform: translate(80px, -90px); }
+}
+
+/* Heart above her head pulses */
+.love {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: beat 1.6s ease-in-out infinite;
+}
+@keyframes beat {
+  0%, 100% { transform: scale(1);   opacity: 0.7; }
+  50%      { transform: scale(1.3); opacity: 1; }
+}
+
+/* Fireflies blink */
+.firefly {
+  animation: blink 3s ease-in-out infinite;
+}
+.f2 { animation-delay: 1s; }
+.f3 { animation-delay: 2s; }
+@keyframes blink {
+  0%, 100% { opacity: 0.1; }
+  50%      { opacity: 0.9; }
+}
